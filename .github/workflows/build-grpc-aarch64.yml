@@ -69,7 +69,7 @@ jobs:
         run: |
           cd grpc/build-aarch64
           tar -czf grpc-aarch64-${{env.GRPC_VERSION}}.tar.gz build-aarch64
-          gh release create "${{env.TAG_VERSION}}" -R Zabrimus/Workflows || true
-          gh release upload "${{env.TAG_VERSION}}" grpc-aarch64-${{env.GRPC_VERSION}}.tar.gz --clobber -R Zabrimus/Workflows
+          gh release create "${{env.TAG_VERSION}}" -R Zabrimus/grpc-precompiled  || true
+          gh release upload "${{env.TAG_VERSION}}" grpc-aarch64-${{env.GRPC_VERSION}}.tar.gz --clobber -R Zabrimus/grpc-precompiled
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
