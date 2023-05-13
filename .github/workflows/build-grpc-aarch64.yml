@@ -5,7 +5,7 @@ on:
 
 env:
   GRPC_VERSION: v1.53.1
-  TAG_VERSION: v1.53.1-1
+  TAG_VERSION: v1.53.1-2
 
 permissions: write-all
 
@@ -60,7 +60,7 @@ jobs:
 
           cmake -DCMAKE_TOOLCHAIN_FILE=/tmp/toolchain-aarch64.cmake \
                 -DCMAKE_BUILD_TYPE=Release \
-                -DCMAKE_INSTALL_PREFIX=`pwd`/build-aarch64 \
+                -DCMAKE_INSTALL_PREFIX=`pwd`/${GRPC_VERSION}/build-aarch64 \
                 ..
 
           make -j 4 
@@ -70,7 +70,8 @@ jobs:
       - name: Release
         run: |
           cd grpc/build-aarch64
-          tar -czf grpc-aarch64-${{env.GRPC_VERSION}}.tar.gz build-aarch64
+          mv ${GRPC_VERSION}/build-aarch64/lib/pkgconfig ${GRPC_VERSION}/build-aarch64/lib/pkgconfig.BUILD_VERSION
+          tar -czf grpc-aarch64-${{env.GRPC_VERSION}}.tar.gz ${GRPC_VERSION}
           gh release create "${{env.TAG_VERSION}}" -R Zabrimus/grpc-precompiled  || true
           gh release upload "${{env.TAG_VERSION}}" grpc-aarch64-${{env.GRPC_VERSION}}.tar.gz --clobber -R Zabrimus/grpc-precompiled
         env:
