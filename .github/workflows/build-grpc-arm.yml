@@ -6,6 +6,8 @@ on:
 env:
   GRPC_VERSION: v1.53.1
   TAG_VERSION: v1.53.1-1
+  
+permissions: write-all
 
 jobs:
   build:
