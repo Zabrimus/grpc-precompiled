@@ -1,0 +1,42 @@
+name: Build grpc x64_86
+
+on:
+  workflow_dispatch:
+
+env:
+  GRPC_VERSION: v1.53.1
+  TAG_VERSION: v1.53.1-1
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: install dependencies
+        shell: bash
+        run: |
+            sudo apt update
+            sudo apt install -y git gcc make cmake 
+
+      - name: git clone
+        shell: bash
+        run: |
+            git clone --recurse-submodules --depth 1 --branch ${{env.GRPC_VERSION}} https://github.com/grpc/grpc.git
+
+      - name: build x86
+        shell: bash
+        run: |
+          cd grpc
+          mkdir build-x86_64
+          cd build-x86_64
+          cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/build-x86_64 ..
+          make -j 4 
+          make install          
+
+      - name: Release
+        run: |
+          cd grpc/build-x86_64
+          tar -czf grpc-x86_64-${{env.GRPC_VERSION}}.tar.gz build-x86_64
+          gh release create "${{env.TAG_VERSION}}" -R Zabrimus/Workflows || true
+          gh release upload "${{env.TAG_VERSION}}" grpc-x86_64-${{env.GRPC_VERSION}}.tar.gz --clobber -R Zabrimus/Workflows
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
