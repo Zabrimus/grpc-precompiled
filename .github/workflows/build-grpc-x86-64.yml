@@ -36,7 +36,7 @@ jobs:
         run: |
           cd grpc/build-x86_64
           tar -czf grpc-x86_64-${{env.GRPC_VERSION}}.tar.gz build-x86_64
-          gh release create "${{env.TAG_VERSION}}" -R Zabrimus/Workflows || true
-          gh release upload "${{env.TAG_VERSION}}" grpc-x86_64-${{env.GRPC_VERSION}}.tar.gz --clobber -R Zabrimus/Workflows
+          gh release create "${{env.TAG_VERSION}}" -R Zabrimus/grpc-precompiled || true
+          gh release upload "${{env.TAG_VERSION}}" grpc-x86_64-${{env.GRPC_VERSION}}.tar.gz --clobber -R Zabrimus/grpc-precompiled
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
