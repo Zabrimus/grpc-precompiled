@@ -69,7 +69,7 @@ jobs:
         run: |
           cd grpc/build-armhf
           tar -czf grpc-armhf-${{env.GRPC_VERSION}}.tar.gz build-armhf
-          gh release create "${{env.TAG_VERSION}}" -R Zabrimus/Workflows || true
-          gh release upload "${{env.TAG_VERSION}}" grpc-armhf-${{env.GRPC_VERSION}}.tar.gz --clobber -R Zabrimus/Workflows
+          gh release create "${{env.TAG_VERSION}}" -R Zabrimus/grpc-precompiled || true
+          gh release upload "${{env.TAG_VERSION}}" grpc-armhf-${{env.GRPC_VERSION}}.tar.gz --clobber -R Zabrimus/grpc-precompiled
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
