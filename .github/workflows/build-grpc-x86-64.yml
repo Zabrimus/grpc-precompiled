@@ -30,15 +30,15 @@ jobs:
           cd grpc
           mkdir build-x86_64
           cd build-x86_64
-          cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/${GRPC_VERSION}/build-x86_64 ..
+          cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/gprc-${GRPC_VERSION}/build-x86_64 ..
           make -j 4 
           make install          
 
       - name: Release
         run: |
           cd grpc/build-x86_64
-          mv ${GRPC_VERSION}/build-x86_64/lib/pkgconfig ${GRPC_VERSION}/build-x86_64/lib/pkgconfig.BUILD_VERSION 
-          tar -czf grpc-x86_64-${{env.GRPC_VERSION}}.tar.gz ${GRPC_VERSION}
+          mv gprc-${GRPC_VERSION}/build-x86_64/lib/pkgconfig gprc-${GRPC_VERSION}/build-x86_64/lib/pkgconfig.BUILD_VERSION 
+          tar -czf grpc-x86_64-${{env.GRPC_VERSION}}.tar.gz gprc-${GRPC_VERSION}
           gh release create "${{env.TAG_VERSION}}" -R Zabrimus/grpc-precompiled || true
           gh release upload "${{env.TAG_VERSION}}" grpc-x86_64-${{env.GRPC_VERSION}}.tar.gz --clobber -R Zabrimus/grpc-precompiled
         env:
