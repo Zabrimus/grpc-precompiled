@@ -60,18 +60,18 @@ jobs:
 
           cmake -DCMAKE_TOOLCHAIN_FILE=/tmp/toolchain-armhf.cmake \
                 -DCMAKE_BUILD_TYPE=Release \
-                -DCMAKE_INSTALL_PREFIX=`pwd`/gprc-${GRPC_VERSION}/build-armhf \
+                -DCMAKE_INSTALL_PREFIX=`pwd`/grpc-${GRPC_VERSION}/build-armhf \
                 ..
 
           make -j 4 
           make install
-          cp -a build-armhf/* gprc-${GRPC_VERSION}/build-armhf/
+          cp -a build-armhf/* grpc-${GRPC_VERSION}/build-armhf/
 
       - name: Release
         run: |
           cd grpc/build-armhf
-          mv gprc-${GRPC_VERSION}/build-armhf/lib/pkgconfig gprc-${GRPC_VERSION}/build-armhf/lib/pkgconfig.BUILD_VERSION
-          tar -czf grpc-armhf-${{env.GRPC_VERSION}}.tar.gz gprc-${GRPC_VERSION}
+          mv grpc-${GRPC_VERSION}/build-armhf/lib/pkgconfig grpc-${GRPC_VERSION}/build-armhf/lib/pkgconfig.BUILD_VERSION
+          tar -czf grpc-armhf-${{env.GRPC_VERSION}}.tar.gz grpc-${GRPC_VERSION}
           gh release create "${{env.TAG_VERSION}}" -R Zabrimus/grpc-precompiled || true
           gh release upload "${{env.TAG_VERSION}}" grpc-armhf-${{env.GRPC_VERSION}}.tar.gz --clobber -R Zabrimus/grpc-precompiled
         env:
