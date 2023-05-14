@@ -65,7 +65,8 @@ jobs:
 
           make -j 4 
           make install
-          ls -lR build-armhf          
+          mkdir gprc-${GRPC_VERSION}
+          mv build-armhf gprc-${GRPC_VERSION}
 
       - name: Release
         run: |
