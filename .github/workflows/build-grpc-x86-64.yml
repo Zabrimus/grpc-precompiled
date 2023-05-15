@@ -30,7 +30,7 @@ jobs:
           cd grpc
           mkdir build-x86_64
           cd build-x86_64
-          cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/grpc-${GRPC_VERSION}/build-x86_64 ..
+          cmake -DCMAKE_BUILD_TYPE=Release -DgRPC_INSTALL=ON -DCMAKE_INSTALL_PREFIX=`pwd`/grpc-${GRPC_VERSION}/build-x86_64 -DgRPC_BUILD_TESTS=OFF -DgRPC_SSL_PROVIDER=package ..
           make -j 4 
           make install          
 
