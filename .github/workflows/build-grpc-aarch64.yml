@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
 
 env:
-  GRPC_VERSION: v1.53.1
-  TAG_VERSION: v1.53.1-1
+  GRPC_VERSION: v1.54.2
+  TAG_VERSION: v1.54.2-1
 
 permissions: write-all
 

@@ -6,7 +6,7 @@ See Releases
 ### See 
 ```
 subproject/grpc.wrap
-subproject/packagefiles/grpc-v1.53.1
+subproject/packagefiles/grpc-v1.54.2
 ```
 
 ### Compile
