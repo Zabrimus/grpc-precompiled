@@ -1,0 +1,9 @@
+[wrap-file]
+directory = grpc-v1.53.1
+source_url = https://github.com/Zabrimus/grpc-precompiled/releases/download/v1.53.1-2/grpc-x86_64-v1.53.1.tar.gz
+source_filename = grpc-x86_64-v1.53.1.tar.gz
+source_hash = 13c1627106052a4752c6fc68ea7a0d966f26db51f8daec2fe7928ec6d99e9748
+patch_directory = grpc-v1.53.1
+
+[provide]
+dependency_names = grpc
