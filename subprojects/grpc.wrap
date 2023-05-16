@@ -2,7 +2,7 @@
 directory = grpc-v1.54.2
 source_url = https://github.com/Zabrimus/grpc-precompiled/releases/download/v1.54.2-1/grpc-x86_64-v1.54.2.tar.gz
 source_filename = grpc-x86_64-v1.54.2.tar.gz
-source_hash = a5be9fbbd573435fb0eed5f444a91c48334a1bbb2e00fe66c6cae3150b991137
+source_hash = 80f33a64f3af039af6a8a68c4e63cafc11b01553e21ce2c50bf5574b2d3e5cc6
 patch_directory = grpc-v1.54.2
 
 [provide]
